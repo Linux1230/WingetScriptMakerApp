@@ -7,14 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Globalization;
 
 using CSharp.Extension;
 
 namespace WingetScriptMaker
 {
-    public partial class MainForm : System.Windows.Forms.Form
+    public partial class MainForm : Form
     {
         public MainForm()
         {
@@ -64,24 +62,24 @@ namespace WingetScriptMaker
                         if (saveFileDialog.FileName != "")
                         {
                             Script.Create(appList.SelectedItems.OfType<string>().ToList(), saveFileDialog.FileName);
-                            MessageBox.Show($"{saveFileDialog.FileName} successfully created!");
+                            Messages.ShowInformation($"{saveFileDialog.FileName} successfully created!");
                         }
                         else
-                            MessageBox.Show($"You must provide a filename!");
+                            Messages.ShowError($"You must provide a filename!");
                     }
                 }
                  else
-                    MessageBox.Show($"Please choose at least one application from the list!");
+                    Messages.ShowError($"Please choose at least one application from the list!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex}");
+                Messages.ShowError($"Error: {ex}");
             }
         }
 
         private void ButtonRunScript_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Experimental feature, script file will be not validated!");
+            DialogResult dialogResult = Messages.ShowDialogOkCancel("Experimental feature, script file will be not validated!");
             if (dialogResult == DialogResult.OK)
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -90,16 +88,15 @@ namespace WingetScriptMaker
                     {
                         if (saveFileDialog.FileName != "")
                         {
-                            //CMD.WingetRunScript(Script.Load(openFileDialog.FileName));
                             CMD.WingetRunScript(openFileDialog.FileName);
-                            MessageBox.Show($"{openFileDialog.FileName} successfully opened!");
+                            Messages.ShowInformation($"{openFileDialog.FileName} successfully opened!");
                         }
                         else
-                            MessageBox.Show($"You must provide a file!");
+                            Messages.ShowError($"You must provide a file!");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error: {ex}");
+                        Messages.ShowError($"Error: {ex}");
                     }
                 }
             }
@@ -107,7 +104,7 @@ namespace WingetScriptMaker
 
         private void ButtonInstallApps_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Selected Apps will be installed to your computer.");
+            DialogResult dialogResult = Messages.ShowDialogOkCancel("Selected Apps will be installed to your computer.");
             if (dialogResult == DialogResult.OK)
             {
                 try
@@ -120,11 +117,11 @@ namespace WingetScriptMaker
                         }
                     }
                     else
-                        MessageBox.Show($"Please choose at least one application from the list!");
+                        Messages.ShowError($"Please choose at least one application from the list!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex}");
+                    Messages.ShowError($"Error: {ex}");
                 }
             }
         }
