@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AppEntity.cs" />
     <Compile Include="CMD.cs" />
+    <Compile Include="Extension\ContainsExtension.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

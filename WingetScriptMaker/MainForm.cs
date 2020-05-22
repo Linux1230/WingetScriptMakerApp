@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
+
+using CSharp.Extension;
 
 namespace WingetScriptMaker
 {
@@ -18,10 +21,17 @@ namespace WingetScriptMaker
             InitializeComponent();
         }
 
-        private void LoadAppList()
+        List<string> CurrantAppNames;
+
+        private void LoadAppNames()
+        {
+            CurrantAppNames = CMD.WingetSearch();
+        }
+
+        private void FillAppList(List<string> apps)
         {
             appList.Items.Clear();
-            foreach (var item in CMD.WingetSearch())
+            foreach (var item in apps)
             {
                 appList.Items.Add(item);
             }
@@ -29,12 +39,13 @@ namespace WingetScriptMaker
 
         private void Form_Load(object sender, EventArgs e)
         {
-            LoadAppList();
+            LoadAppNames();
+            FillAppList(CurrantAppNames);
         }
 
         private void ButtonRefreshList_Click(object sender, EventArgs e)
         {
-            LoadAppList();
+            LoadAppNames();
         }
 
         private void ButtonUnselectAll_Click(object sender, EventArgs e)
@@ -94,7 +105,7 @@ namespace WingetScriptMaker
             }
         }
 
-        private void buttonInstallApps_Click(object sender, EventArgs e)
+        private void ButtonInstallApps_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Selected Apps will be installed to your computer.");
             if (dialogResult == DialogResult.OK)
@@ -116,6 +127,12 @@ namespace WingetScriptMaker
                     MessageBox.Show($"Error: {ex}");
                 }
             }
+        }
+
+        private void TextBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            List<String> result = CurrantAppNames.Where(x => x.ContainsCaseInsensitive(textBoxSearch.Text)).ToList();
+            FillAppList(result);
         }
     }
 }
