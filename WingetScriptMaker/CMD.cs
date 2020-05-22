@@ -67,5 +67,21 @@ namespace WingetScriptMaker
         {
             Process.Start($@"{filename}");
         }
+
+        public static void WingetInstall(string app)
+        {
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    WindowStyle = ProcessWindowStyle.Normal,
+                    FileName = "cmd.exe",
+                    Arguments = $"/C winget install {'"' + app + '"'}",
+                    UseShellExecute = false
+                }
+            };
+            process.Start();
+            process.WaitForExit();
+        }
     }
 }

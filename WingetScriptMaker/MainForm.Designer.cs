@@ -36,12 +36,13 @@
             this.buttonUnselectAll = new System.Windows.Forms.Button();
             this.ButtonRunScript = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonInstallApps = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCreateFile
             // 
-            this.buttonCreateFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCreateFile.Location = new System.Drawing.Point(500, 393);
+            this.buttonCreateFile.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonCreateFile.Location = new System.Drawing.Point(516, 393);
             this.buttonCreateFile.Name = "buttonCreateFile";
             this.buttonCreateFile.Size = new System.Drawing.Size(120, 40);
             this.buttonCreateFile.TabIndex = 0;
@@ -70,7 +71,7 @@
             this.appList.Location = new System.Drawing.Point(12, 32);
             this.appList.Name = "appList";
             this.appList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.appList.Size = new System.Drawing.Size(608, 344);
+            this.appList.Size = new System.Drawing.Size(624, 344);
             this.appList.TabIndex = 2;
             // 
             // saveFileDialog
@@ -82,7 +83,7 @@
             // 
             // buttonRefreshList
             // 
-            this.buttonRefreshList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonRefreshList.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonRefreshList.Location = new System.Drawing.Point(12, 393);
             this.buttonRefreshList.Name = "buttonRefreshList";
             this.buttonRefreshList.Size = new System.Drawing.Size(120, 40);
@@ -93,7 +94,7 @@
             // 
             // buttonUnselectAll
             // 
-            this.buttonUnselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonUnselectAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonUnselectAll.Location = new System.Drawing.Point(138, 393);
             this.buttonUnselectAll.Name = "buttonUnselectAll";
             this.buttonUnselectAll.Size = new System.Drawing.Size(120, 40);
@@ -104,12 +105,12 @@
             // 
             // ButtonRunScript
             // 
-            this.ButtonRunScript.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonRunScript.Location = new System.Drawing.Point(374, 393);
+            this.ButtonRunScript.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ButtonRunScript.Location = new System.Drawing.Point(390, 393);
             this.ButtonRunScript.Name = "ButtonRunScript";
             this.ButtonRunScript.Size = new System.Drawing.Size(120, 40);
             this.ButtonRunScript.TabIndex = 5;
-            this.ButtonRunScript.Text = "Run existing script";
+            this.ButtonRunScript.Text = "Run Existing Script";
             this.ButtonRunScript.UseVisualStyleBackColor = true;
             this.ButtonRunScript.Click += new System.EventHandler(this.ButtonRunScript_Click);
             // 
@@ -117,17 +118,30 @@
             // 
             this.openFileDialog.Filter = "Batch files (*.bat)|*.bat|All files (*.*)|*.*";
             // 
+            // buttonInstallApps
+            // 
+            this.buttonInstallApps.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonInstallApps.Location = new System.Drawing.Point(264, 393);
+            this.buttonInstallApps.Name = "buttonInstallApps";
+            this.buttonInstallApps.Size = new System.Drawing.Size(120, 40);
+            this.buttonInstallApps.TabIndex = 6;
+            this.buttonInstallApps.Text = "Install Selected Apps";
+            this.buttonInstallApps.UseVisualStyleBackColor = true;
+            this.buttonInstallApps.Click += new System.EventHandler(this.buttonInstallApps_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 441);
+            this.ClientSize = new System.Drawing.Size(648, 441);
+            this.Controls.Add(this.buttonInstallApps);
             this.Controls.Add(this.ButtonRunScript);
             this.Controls.Add(this.buttonUnselectAll);
             this.Controls.Add(this.buttonRefreshList);
             this.Controls.Add(this.appList);
             this.Controls.Add(this.appsLabel);
             this.Controls.Add(this.buttonCreateFile);
+            this.MinimumSize = new System.Drawing.Size(664, 480);
             this.Name = "MainForm";
             this.Text = "Winget Script Maker";
             this.Load += new System.EventHandler(this.Form_Load);
@@ -146,6 +160,7 @@
         private System.Windows.Forms.Button buttonUnselectAll;
         private System.Windows.Forms.Button ButtonRunScript;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button buttonInstallApps;
     }
 }
 

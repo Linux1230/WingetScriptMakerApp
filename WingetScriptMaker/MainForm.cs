@@ -93,5 +93,29 @@ namespace WingetScriptMaker
                 }
             }
         }
+
+        private void buttonInstallApps_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Selected Apps will be installed to your computer.");
+            if (dialogResult == DialogResult.OK)
+            {
+                try
+                {
+                    if (appList.SelectedItems != null)
+                    {
+                        foreach (var item in appList.SelectedItems.OfType<string>().ToList())
+                        {
+                            CMD.WingetInstall(item);
+                        }
+                    }
+                    else
+                        MessageBox.Show($"Please choose at least one application from the list!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex}");
+                }
+            }
+        }
     }
 }
