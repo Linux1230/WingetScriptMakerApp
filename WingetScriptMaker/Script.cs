@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WingetScriptMaker
 {
-    public static class ScriptCreate
+    public static class Script
     {
-        public static List<string> CreateScript(List<string> apps)
+        public static List<string> Create(List<string> apps)
         {
             List<string> script = new List<string>();
 

@@ -1,6 +1,6 @@
 ﻿namespace WingetScriptMaker
 {
-    partial class Form
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,13 +31,14 @@
             this.buttonCreateFile = new System.Windows.Forms.Button();
             this.appsLabel = new System.Windows.Forms.Label();
             this.appList = new System.Windows.Forms.ListBox();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // buttonCreateFile
             // 
-            this.buttonCreateFile.Location = new System.Drawing.Point(12, 415);
+            this.buttonCreateFile.Location = new System.Drawing.Point(12, 389);
             this.buttonCreateFile.Name = "buttonCreateFile";
-            this.buttonCreateFile.Size = new System.Drawing.Size(104, 23);
+            this.buttonCreateFile.Size = new System.Drawing.Size(120, 40);
             this.buttonCreateFile.TabIndex = 0;
             this.buttonCreateFile.Text = "Create Script File";
             this.buttonCreateFile.UseVisualStyleBackColor = true;
@@ -58,22 +59,28 @@
             this.appList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.appList.FormattingEnabled = true;
             this.appList.ItemHeight = 20;
-            this.appList.Location = new System.Drawing.Point(15, 48);
+            this.appList.Location = new System.Drawing.Point(12, 32);
             this.appList.Name = "appList";
             this.appList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.appList.Size = new System.Drawing.Size(613, 344);
+            this.appList.Size = new System.Drawing.Size(608, 344);
             this.appList.TabIndex = 2;
             // 
-            // Form
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "bat";
+            this.saveFileDialog.Filter = "Batch files (*.bat)|*.bat|All files (*.*)|*.*";
+            this.saveFileDialog.Title = "Save Generated Script File";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 450);
+            this.ClientSize = new System.Drawing.Size(632, 441);
             this.Controls.Add(this.appList);
             this.Controls.Add(this.appsLabel);
             this.Controls.Add(this.buttonCreateFile);
-            this.Name = "Form";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Winget Script Maker";
             this.Load += new System.EventHandler(this.Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,6 +92,7 @@
         private System.Windows.Forms.Button buttonCreateFile;
         private System.Windows.Forms.Label appsLabel;
         private System.Windows.Forms.ListBox appList;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 
