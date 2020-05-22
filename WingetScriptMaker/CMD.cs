@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace WingetScriptMaker
 {
@@ -16,6 +17,7 @@ namespace WingetScriptMaker
             {
                 StartInfo = new ProcessStartInfo
                 {
+                    CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
                     FileName = "cmd.exe",
                     Arguments = "/C winget search > appList.temp",
@@ -59,6 +61,11 @@ namespace WingetScriptMaker
             }
             
             return apps;
+        }
+
+        public static void WingetRunScript(string filename)
+        {
+            Process.Start($@"{filename}");
         }
     }
 }

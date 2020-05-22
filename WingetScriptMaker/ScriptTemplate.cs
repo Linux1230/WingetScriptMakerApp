@@ -17,7 +17,10 @@ namespace WingetScriptMaker
                 $"@echo off",
                 $"Echo App list:"
             };
-            commands.AddRange(apps);
+            foreach (var item in apps)
+            {
+                commands.Add($"Echo {item}");
+            }
             return commands;
         }
 
@@ -26,10 +29,9 @@ namespace WingetScriptMaker
             return new List<string>
             {
                 $"",
-                $"winget install {app}",
+                $"winget install {('"' + app + '"')}",
                 $"if % ERRORLEVEL % EQU 0",
-                $"Echo {app} installed successfully.",
-                $""
+                $"Echo {app} installed successfully."
             };
         }
     }

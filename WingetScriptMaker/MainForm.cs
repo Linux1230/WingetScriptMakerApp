@@ -17,12 +17,29 @@ namespace WingetScriptMaker
         {
             InitializeComponent();
         }
-        private void Form_Load(object sender, EventArgs e)
+
+        private void LoadAppList()
         {
+            appList.Items.Clear();
             foreach (var item in CMD.WingetSearch())
             {
                 appList.Items.Add(item);
             }
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            LoadAppList();
+        }
+
+        private void ButtonRefreshList_Click(object sender, EventArgs e)
+        {
+            LoadAppList();
+        }
+
+        private void ButtonUnselectAll_Click(object sender, EventArgs e)
+        {
+            appList.SelectedItems.Clear();
         }
 
         private void ButtonCreateFile_Click(object sender, EventArgs e)
@@ -35,8 +52,7 @@ namespace WingetScriptMaker
                     {
                         if (saveFileDialog.FileName != "")
                         {
-                            List<string> cmd = Script.Create(appList.SelectedItems.OfType<string>().ToList());
-                            IO.WriteFile(saveFileDialog.FileName, cmd);
+                            Script.Create(appList.SelectedItems.OfType<string>().ToList(), saveFileDialog.FileName);
                             MessageBox.Show($"{saveFileDialog.FileName} successfully created!");
                         }
                         else
@@ -49,6 +65,32 @@ namespace WingetScriptMaker
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex}");
+            }
+        }
+
+        private void ButtonRunScript_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Experimental feature, script file will be not validated!");
+            if (dialogResult == DialogResult.OK)
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        if (saveFileDialog.FileName != "")
+                        {
+                            //CMD.WingetRunScript(Script.Load(openFileDialog.FileName));
+                            CMD.WingetRunScript(openFileDialog.FileName);
+                            MessageBox.Show($"{openFileDialog.FileName} successfully opened!");
+                        }
+                        else
+                            MessageBox.Show($"You must provide a file!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex}");
+                    }
+                }
             }
         }
     }

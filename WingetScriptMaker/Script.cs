@@ -8,7 +8,7 @@ namespace WingetScriptMaker
 {
     public static class Script
     {
-        public static List<string> Create(List<string> apps)
+        public static void Create(List<string> apps, string filename)
         {
             List<string> script = new List<string>();
 
@@ -21,7 +21,12 @@ namespace WingetScriptMaker
 
             script.Add(ScriptTemplate.ScriptStopLine);
 
-            return script;
+            IO.WriteFile(filename, script);
+        }
+
+        public static List<string> Load(string filename)
+        {
+            return IO.ReadFile(filename);
         }
     }
 }
