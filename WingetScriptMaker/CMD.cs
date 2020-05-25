@@ -47,17 +47,7 @@ namespace WingetScriptMaker
             for (int i = 0; i < apps.Count(); i++) 
             {
                 apps[i] = apps[i].Substring(0, maxAppNameLenght);
-            
-                bool stop = false;
-                for (int j = maxAppNameLenght - 1; j > 0; j--)
-                {
-                    stop = (apps[i][j] != ' ');
-
-                    if (apps[i][j] == ' ' && !stop)
-                        apps[i] = apps[i].Remove(j);
-                    else
-                        break;
-                }
+                apps[i] = apps[i].Trim();
             }
             
             return apps;
