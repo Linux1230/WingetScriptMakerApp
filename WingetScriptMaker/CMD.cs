@@ -10,9 +10,11 @@ namespace WingetScriptMaker
 {
     public static class CMD
     {
-        public static List<string> WingetSearch()
+        public static List<AppEntity> WingetSearch()
         {
-            List<string> apps = new List<string>();
+            List<string> commandOutput = new List<string>();
+            List<AppEntity> apps = new List<AppEntity>();
+
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -28,28 +30,44 @@ namespace WingetScriptMaker
             process.Start();
             process.WaitForExit();
 
-            apps.AddRange(IO.ReadAndDeleteFile("appList.temp"));
-            
+            commandOutput.AddRange(IO.ReadAndDeleteFile("appList.temp"));
+
+            #region AppName
             int maxAppNameLenght = 0;
-            for (int i = 0; i < apps[1].Length - 1; i++)
+            for (int i = maxAppNameLenght; i < commandOutput[1].Length - 1; i++)
             {
-                if (apps[1][i] == 'I' && apps[1][i + 1] == 'd')
+                if (commandOutput[1][i] == 'I' && commandOutput[1][i + 1] == 'd')
                     break;
                 else
                     maxAppNameLenght++;
             }
+            #endregion
+
+            #region AppId
+            int maxAppIdLenght = 0;
+            for (int i = maxAppNameLenght; i < commandOutput[1].Length - 1; i++)
+            {
+                if (commandOutput[1][i] == 'V' && commandOutput[1][i + 1] == 'e')
+                    break;
+                else
+                    maxAppIdLenght++;
+            }
+            #endregion
 
             for (int i = 0; i < 3; i++)
             {
-                apps.RemoveAt(0);
+                commandOutput.RemoveAt(0);
             }
 
-            for (int i = 0; i < apps.Count(); i++) 
+            for (int i = 0; i < commandOutput.Count(); i++)
             {
-                apps[i] = apps[i].Substring(0, maxAppNameLenght);
-                apps[i] = apps[i].Trim();
+                int maxAppVersionLenght = commandOutput[i].Length - (maxAppNameLenght + maxAppIdLenght);
+                apps.Add(new AppEntity(
+                                commandOutput[i].Substring(0, maxAppNameLenght).Trim(),
+                                commandOutput[i].Substring(maxAppNameLenght, maxAppIdLenght).Trim(),
+                                commandOutput[i].Substring(maxAppNameLenght + maxAppIdLenght, maxAppVersionLenght).Trim()
+                         ));
             }
-            
             return apps;
         }
 

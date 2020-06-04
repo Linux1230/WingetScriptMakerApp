@@ -19,26 +19,26 @@ namespace WingetScriptMaker
             InitializeComponent();
         }
 
-        List<string> CurrantAppNames;
+        List<AppEntity> CurrantApps;
 
         private void LoadAppNames()
         {
-            CurrantAppNames = CMD.WingetSearch();
+            CurrantApps = CMD.WingetSearch();
         }
 
-        private void FillAppList(List<string> apps)
+        private void FillAppList(List<AppEntity> apps, int filter)
         {
             appList.Items.Clear();
             foreach (var item in apps)
             {
-                appList.Items.Add(item);
+                appList.Items.Add(filter == 0 ? item.Name : item.Id);
             }
         }
 
         private void Form_Load(object sender, EventArgs e)
         {
             LoadAppNames();
-            FillAppList(CurrantAppNames);
+            FillAppList(CurrantApps, 0);
         }
 
         private void ButtonRefreshList_Click(object sender, EventArgs e)
@@ -113,7 +113,12 @@ namespace WingetScriptMaker
                     {
                         foreach (var item in appList.SelectedItems.OfType<string>().ToList())
                         {
-                            CMD.WingetInstall(item);
+                            //TODO add full app description
+                            dialogResult = Messages.ShowDialogOkCancel($"{item} will be installed to your computer.");
+                            if (dialogResult == DialogResult.OK)
+                            {
+                                CMD.WingetInstall(item);
+                            }
                         }
                     }
                     else
@@ -128,8 +133,17 @@ namespace WingetScriptMaker
 
         private void TextBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            List<String> result = CurrantAppNames.Where(x => x.ContainsCaseInsensitive(textBoxSearch.Text)).ToList();
-            FillAppList(result);
+            FillAppList(
+                filterComboBox.SelectedIndex == 0 ?
+                CurrantApps.Where(x => x.Name.ContainsCaseInsensitive(textBoxSearch.Text)).ToList() :
+                CurrantApps.Where(x => x.Id.ContainsCaseInsensitive(textBoxSearch.Text)).ToList(),
+                filterComboBox.SelectedIndex
+                );
+        }
+
+        private void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillAppList(CurrantApps, (sender as ComboBox).SelectedIndex);
         }
     }
 }
