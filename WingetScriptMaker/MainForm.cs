@@ -19,11 +19,16 @@ namespace WingetScriptMaker
             InitializeComponent();
         }
 
-        List<AppEntity> CurrantApps;
+        private List<AppEntity> CurrantApps { get; set; }
 
-        private void LoadAppNames()
+        private List<AppEntity> LoadAppNames()
         {
-            CurrantApps = CMD.WingetSearch();
+            return CMD.WingetSearch();
+        }
+
+        private AppEntity FindApp(string app, int filter)
+        {
+            return CurrantApps.Find(x => x.Name == app || x.Id == app);
         }
 
         private void FillAppList(List<AppEntity> apps, int filter)
@@ -35,10 +40,19 @@ namespace WingetScriptMaker
             }
         }
 
+        private void LoadingError()
+        {
+            Messages.ShowError("Unexpected error occurred, application restarting!");
+            Application.Restart();
+        }
+
         private void Form_Load(object sender, EventArgs e)
         {
-            LoadAppNames();
+            CurrantApps = LoadAppNames();
             FillAppList(CurrantApps, 0);
+            if (appList.Items == null)
+                LoadingError();
+            filterComboBox.SelectedIndex = 0;
         }
 
         private void ButtonRefreshList_Click(object sender, EventArgs e)
@@ -113,8 +127,8 @@ namespace WingetScriptMaker
                     {
                         foreach (var item in appList.SelectedItems.OfType<string>().ToList())
                         {
-                            //TODO add full app description
-                            dialogResult = Messages.ShowDialogOkCancel($"{item} will be installed to your computer.");
+                            AppEntity app = FindApp(item, filterComboBox.SelectedIndex);
+                            dialogResult = Messages.ShowDialogOkCancel($"Name: {app.Name}\nId: {app.Id}\nVersion: {app.Version}\nThis application will be installed to your computer.");
                             if (dialogResult == DialogResult.OK)
                             {
                                 CMD.WingetInstall(item);
