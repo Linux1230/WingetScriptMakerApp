@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using CSharp.Extension;
+using CSharpExtensions.Form.CustomMessageBox;
+using CSharpExtensions.Form.ColoredControls;
+using CSharpExtensions.String;
+using System.Runtime.CompilerServices;
 
 namespace WingetScriptMaker
 {
@@ -17,7 +20,22 @@ namespace WingetScriptMaker
         public MainForm()
         {
             InitializeComponent();
+            UpdateColorAction();
         }
+
+        #region UI
+        private void UpdateColorAction()
+        {
+            ColorChanger.ColorChanged += UpdateColor;
+            ColorChanger.ForceUpdate();
+        }
+
+        private void UpdateColor()
+        {
+            this.BackColor = ColorChanger.ColorBackground;
+            this.ForeColor = ColorChanger.ColorText;
+        }
+        #endregion
 
         private List<AppEntity> CurrantApps { get; set; }
 
@@ -26,7 +44,7 @@ namespace WingetScriptMaker
             return CMD.WingetSearch();
         }
 
-        private AppEntity FindApp(string app, int filter)
+        private AppEntity FindApp(string app)
         {
             return CurrantApps.Find(x => x.Name == app || x.Id == app);
         }
@@ -127,7 +145,7 @@ namespace WingetScriptMaker
                     {
                         foreach (var item in appList.SelectedItems.OfType<string>().ToList())
                         {
-                            AppEntity app = FindApp(item, filterComboBox.SelectedIndex);
+                            AppEntity app = FindApp(item);
                             dialogResult = Messages.ShowDialogOkCancel($"Name: {app.Name}\nId: {app.Id}\nVersion: {app.Version}\nThis application will be installed to your computer.");
                             if (dialogResult == DialogResult.OK)
                             {

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace CSharp.Extension
+namespace CSharpExtensions.Form.CustomMessageBox
 {
     public static class Messages
     {

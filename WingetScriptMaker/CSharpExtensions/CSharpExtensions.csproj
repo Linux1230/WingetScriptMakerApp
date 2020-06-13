@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBA0A15A-0D2A-4779-A3F1-45AB6462D486}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TeamManagerAppControls</RootNamespace>
+    <AssemblyName>TeamManagerAppControls</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form\ColoredControls\ColorChanger.cs" />
+    <Compile Include="Form\ColoredControls\ColoredButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColoredComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColoredDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColoredListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColoredNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColoredPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColoredTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColorPalette.cs" />
+    <Compile Include="Form\ColoredControls\ColorPaletteDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColorPaletteDisplay.Designer.cs">
+      <DependentUpon>ColorPaletteDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColorPalettePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\ColoredControls\ColorPalettePicker.Designer.cs">
+      <DependentUpon>ColorPalettePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="String\PasswordHashing.cs" />
+    <Compile Include="String\RandomString.cs" />
+    <Compile Include="String\ContainsCaseInsensitive.cs" />
+    <Compile Include="Form\CustomMessageBox\Messages.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="String\Validation.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form\ColoredControls\ColoredButton.resx">
+      <DependentUpon>ColoredButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ColoredControls\ColoredDataGridView.resx">
+      <DependentUpon>ColoredDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ColoredControls\ColoredPanel.resx">
+      <DependentUpon>ColoredPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ColoredControls\ColoredTextBox.resx">
+      <DependentUpon>ColoredTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ColoredControls\ColorPaletteDisplay.resx">
+      <DependentUpon>ColorPaletteDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ColoredControls\ColorPalettePicker.resx">
+      <DependentUpon>ColorPalettePicker.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

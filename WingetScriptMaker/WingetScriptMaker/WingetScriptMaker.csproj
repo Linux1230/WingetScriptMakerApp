@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="AppEntity.cs" />
     <Compile Include="CMD.cs" />
-    <Compile Include="Extension\ContainsExtension.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,7 +55,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IO.cs" />
-    <Compile Include="Extension\Messages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Script.cs" />
@@ -85,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpExtensions\CSharpExtensions.csproj">
+      <Project>{eba0a15a-0d2a-4779-a3f1-45ab6462d486}</Project>
+      <Name>CSharpExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
