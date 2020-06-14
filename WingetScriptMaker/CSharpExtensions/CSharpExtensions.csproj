@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EBA0A15A-0D2A-4779-A3F1-45AB6462D486}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>TeamManagerAppControls</RootNamespace>
-    <AssemblyName>TeamManagerAppControls</AssemblyName>
+    <RootNamespace>CSharpExtensions</RootNamespace>
+    <AssemblyName>CSharpExtensions</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
