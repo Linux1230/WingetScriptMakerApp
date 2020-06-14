@@ -78,13 +78,9 @@
     <Compile Include="Form\ColoredControls\ColorPalettePicker.Designer.cs">
       <DependentUpon>ColorPalettePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="JSON\Serializer.cs" />
-    <Compile Include="String\PasswordHashing.cs" />
-    <Compile Include="String\RandomString.cs" />
     <Compile Include="String\ContainsCaseInsensitive.cs" />
     <Compile Include="Form\CustomMessageBox\Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="String\Validation.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
