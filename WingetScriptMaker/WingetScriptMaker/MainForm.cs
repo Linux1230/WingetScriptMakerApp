@@ -12,6 +12,7 @@ using CSharpExtensions.Form.CustomMessageBox;
 using CSharpExtensions.Form.ColoredControls;
 using CSharpExtensions.String;
 using System.Runtime.CompilerServices;
+using CSharpExtensions.JSON;
 
 namespace WingetScriptMaker
 {
