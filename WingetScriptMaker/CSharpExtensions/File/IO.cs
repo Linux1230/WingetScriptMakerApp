@@ -43,7 +43,7 @@ namespace CSharpExtensions.IO
 
         public static string GetExePath()
         {
-            return System.Reflection.Assembly.GetEntryAssembly().Location;
+            return Application.StartupPath;
         }
     }
 }
