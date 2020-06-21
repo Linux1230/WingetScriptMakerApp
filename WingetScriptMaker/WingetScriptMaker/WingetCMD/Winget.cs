@@ -73,11 +73,6 @@ namespace WingetScriptMaker
             return apps;
         }
 
-        public static void RunScript(string filename)
-        {
-            Process.Start($@"{filename}");
-        }
-
         public static void Install(string app)
         {
             Process process = new Process

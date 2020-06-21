@@ -30,10 +30,12 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Winget = new System.Windows.Forms.TabPage();
-            this.wingetCMD1 = new WingetScriptMaker.WingetCMD();
             this.Other = new System.Windows.Forms.TabPage();
+            this.wingetCMD = new WingetScriptMaker.WingetCMD();
+            this.otherCMD = new WingetScriptMaker.OtherCMD.OtherCMD();
             this.tabControl.SuspendLayout();
             this.Winget.SuspendLayout();
+            this.Other.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -52,7 +54,7 @@
             // 
             // Winget
             // 
-            this.Winget.Controls.Add(this.wingetCMD1);
+            this.Winget.Controls.Add(this.wingetCMD);
             this.Winget.Location = new System.Drawing.Point(4, 22);
             this.Winget.Name = "Winget";
             this.Winget.Padding = new System.Windows.Forms.Padding(3);
@@ -61,25 +63,38 @@
             this.Winget.Text = "Winget";
             this.Winget.UseVisualStyleBackColor = true;
             // 
-            // wingetCMD1
-            // 
-            this.wingetCMD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.wingetCMD1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wingetCMD1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.wingetCMD1.Location = new System.Drawing.Point(3, 3);
-            this.wingetCMD1.Name = "wingetCMD1";
-            this.wingetCMD1.Size = new System.Drawing.Size(838, 601);
-            this.wingetCMD1.TabIndex = 0;
-            // 
             // Other
             // 
+            this.Other.Controls.Add(this.otherCMD);
             this.Other.Location = new System.Drawing.Point(4, 22);
             this.Other.Name = "Other";
             this.Other.Padding = new System.Windows.Forms.Padding(3);
-            this.Other.Size = new System.Drawing.Size(980, 601);
+            this.Other.Size = new System.Drawing.Size(844, 607);
             this.Other.TabIndex = 1;
             this.Other.Text = "Other";
             this.Other.UseVisualStyleBackColor = true;
+            // 
+            // wingetCMD
+            // 
+            this.wingetCMD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.wingetCMD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wingetCMD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.wingetCMD.Location = new System.Drawing.Point(3, 3);
+            this.wingetCMD.MinimumSize = new System.Drawing.Size(838, 601);
+            this.wingetCMD.Name = "wingetCMD";
+            this.wingetCMD.Size = new System.Drawing.Size(838, 601);
+            this.wingetCMD.TabIndex = 0;
+            // 
+            // otherCMD
+            // 
+            this.otherCMD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.otherCMD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otherCMD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.otherCMD.Location = new System.Drawing.Point(3, 3);
+            this.otherCMD.MinimumSize = new System.Drawing.Size(838, 601);
+            this.otherCMD.Name = "otherCMD";
+            this.otherCMD.Size = new System.Drawing.Size(838, 601);
+            this.otherCMD.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -92,6 +107,7 @@
             this.Text = "Winget Script Maker";
             this.tabControl.ResumeLayout(false);
             this.Winget.ResumeLayout(false);
+            this.Other.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -101,7 +117,8 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage Winget;
         private System.Windows.Forms.TabPage Other;
-        private WingetCMD wingetCMD1;
+        private WingetCMD wingetCMD;
+        private OtherCMD.OtherCMD otherCMD;
     }
 }
 

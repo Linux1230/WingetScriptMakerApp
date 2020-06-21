@@ -52,6 +52,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherCMD\OtherCMD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherCMD\OtherCMD.Designer.cs">
+      <DependentUpon>OtherCMD.cs</DependentUpon>
+    </Compile>
     <Compile Include="WingetCMD\AppEntity.cs" />
     <Compile Include="WingetCMD\Winget.cs" />
     <Compile Include="WingetCMD\WingetCMD.cs">
@@ -66,6 +72,9 @@
     <Compile Include="WingetCMD\WingetScriptTemplate.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherCMD\OtherCMD.resx">
+      <DependentUpon>OtherCMD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WingetCMD\WingetCMD.resx">
       <DependentUpon>WingetCMD.cs</DependentUpon>

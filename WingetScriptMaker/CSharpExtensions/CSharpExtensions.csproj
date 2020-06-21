@@ -79,6 +79,7 @@
       <DependentUpon>ColorPalettePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="File\IO.cs" />
+    <Compile Include="RunProcess\RunProcess.cs" />
     <Compile Include="String\ContainsCaseInsensitive.cs" />
     <Compile Include="Form\CustomMessageBox\Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CSharpExtensions.Form.CustomMessageBox;
 using CSharpExtensions.Form.ColoredControls;
 using CSharpExtensions.String;
+using CSharpExtensions.RunProcess;
 
 namespace WingetScriptMaker
 {
@@ -119,7 +120,7 @@ namespace WingetScriptMaker
                     {
                         if (saveFileDialog.FileName != "")
                         {
-                            Winget.RunScript(openFileDialog.FileName);
+                            RunProcess.BatchScript(openFileDialog.FileName);
                             Messages.ShowInformation($"{openFileDialog.FileName} successfully opened!");
                         }
                         else

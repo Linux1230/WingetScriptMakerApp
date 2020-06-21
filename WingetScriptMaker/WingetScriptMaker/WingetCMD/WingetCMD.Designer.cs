@@ -226,6 +226,7 @@
             this.Controls.Add(this.appList);
             this.Controls.Add(this.appsLabel);
             this.Controls.Add(this.buttonCreateFile);
+            this.MinimumSize = new System.Drawing.Size(838, 601);
             this.Name = "WingetCMD";
             this.Size = new System.Drawing.Size(838, 601);
             this.Load += new System.EventHandler(this.Form_Load);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace CSharpExtensions.IO
 {
@@ -29,6 +30,20 @@ namespace CSharpExtensions.IO
             List<string> temp = ReadFile(name);
             DeleteFile(name);
             return temp;
+        }
+
+        public static List<string> GetFileNamesFromFolder(string path)
+        {
+            int skipDirectory = path.Length;
+            if (!path.EndsWith("" + Path.DirectorySeparatorChar)) skipDirectory++;
+
+            return Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories)
+                            .Select(f => f.Substring(skipDirectory)).ToList<string>();
+        }
+
+        public static string GetExePath()
+        {
+            return System.Reflection.Assembly.GetEntryAssembly().Location;
         }
     }
 }
