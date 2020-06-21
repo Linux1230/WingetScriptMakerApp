@@ -4,22 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CSharpExtensions.IO;
+
 namespace WingetScriptMaker
 {
-    public static class Script
+    public static class WingetScript
     {
         public static void Create(List<string> apps, string filename)
         {
             List<string> script = new List<string>();
 
-            script.AddRange(ScriptTemplate.ScriptStartLines(apps));
+            script.AddRange(WingetScriptTemplate.ScriptStartLines(apps));
 
             foreach (var item in apps)
             {
-                script.AddRange(ScriptTemplate.ScriptInstallLines(item));
+                script.AddRange(WingetScriptTemplate.ScriptInstallLines(item));
             }
 
-            script.Add(ScriptTemplate.ScriptStopLine);
+            script.Add(WingetScriptTemplate.ScriptStopLine);
 
             IO.WriteFile(filename, script);
         }

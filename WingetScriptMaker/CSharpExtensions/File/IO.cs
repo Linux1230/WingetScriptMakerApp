@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace WingetScriptMaker
+namespace CSharpExtensions.IO
 {
     public static class IO
     {

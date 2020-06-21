@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
 
+using CSharpExtensions.IO;
+
 namespace WingetScriptMaker
 {
-    public static class CMD
+    public static class Winget
     {
-        public static List<AppEntity> WingetSearch()
+        public static List<AppEntity> Search()
         {
             List<string> commandOutput = new List<string>();
             List<AppEntity> apps = new List<AppEntity>();
@@ -71,12 +73,12 @@ namespace WingetScriptMaker
             return apps;
         }
 
-        public static void WingetRunScript(string filename)
+        public static void RunScript(string filename)
         {
             Process.Start($@"{filename}");
         }
 
-        public static void WingetInstall(string app)
+        public static void Install(string app)
         {
             Process process = new Process
             {

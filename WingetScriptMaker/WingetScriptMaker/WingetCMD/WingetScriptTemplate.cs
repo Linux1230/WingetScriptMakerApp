@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WingetScriptMaker
 {
-    public static class ScriptTemplate
+    public static class WingetScriptTemplate
     {
         public static readonly string ScriptStopLine = "pause";
 
