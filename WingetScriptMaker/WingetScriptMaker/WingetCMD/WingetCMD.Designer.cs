@@ -36,7 +36,7 @@
             this.filterLabel = new System.Windows.Forms.Label();
             this.filterComboBox = new CSharpExtensions.Form.ColoredControls.ColoredComboBox();
             this.buttonInstallApps = new CSharpExtensions.Form.ColoredControls.ColoredButton();
-            this.ButtonRunScript = new CSharpExtensions.Form.ColoredControls.ColoredButton();
+            this.ButtonLoadScript = new CSharpExtensions.Form.ColoredControls.ColoredButton();
             this.buttonUnselectAll = new CSharpExtensions.Form.ColoredControls.ColoredButton();
             this.buttonRefreshList = new CSharpExtensions.Form.ColoredControls.ColoredButton();
             this.appList = new CSharpExtensions.Form.ColoredControls.ColoredListBox();
@@ -127,22 +127,22 @@
             this.buttonInstallApps.UseVisualStyleBackColor = false;
             this.buttonInstallApps.Click += new System.EventHandler(this.ButtonInstallApps_Click);
             // 
-            // ButtonRunScript
+            // ButtonLoadScript
             // 
-            this.ButtonRunScript.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.ButtonRunScript.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(221)))), ((int)(((byte)(23)))));
-            this.ButtonRunScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonRunScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ButtonRunScript.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ButtonRunScript.Location = new System.Drawing.Point(510, 537);
-            this.ButtonRunScript.Margin = new System.Windows.Forms.Padding(8);
-            this.ButtonRunScript.Name = "ButtonRunScript";
-            this.ButtonRunScript.Raised = true;
-            this.ButtonRunScript.Size = new System.Drawing.Size(150, 50);
-            this.ButtonRunScript.TabIndex = 5;
-            this.ButtonRunScript.Text = "Run Existing Script";
-            this.ButtonRunScript.UseVisualStyleBackColor = false;
-            this.ButtonRunScript.Click += new System.EventHandler(this.ButtonRunScript_Click);
+            this.ButtonLoadScript.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ButtonLoadScript.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(221)))), ((int)(((byte)(23)))));
+            this.ButtonLoadScript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonLoadScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ButtonLoadScript.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ButtonLoadScript.Location = new System.Drawing.Point(510, 537);
+            this.ButtonLoadScript.Margin = new System.Windows.Forms.Padding(8);
+            this.ButtonLoadScript.Name = "ButtonLoadScript";
+            this.ButtonLoadScript.Raised = true;
+            this.ButtonLoadScript.Size = new System.Drawing.Size(150, 50);
+            this.ButtonLoadScript.TabIndex = 5;
+            this.ButtonLoadScript.Text = "Load Script File";
+            this.ButtonLoadScript.UseVisualStyleBackColor = false;
+            this.ButtonLoadScript.Click += new System.EventHandler(this.ButtonLoadScript_Click);
             // 
             // buttonUnselectAll
             // 
@@ -193,6 +193,7 @@
             this.appList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.appList.Size = new System.Drawing.Size(814, 464);
             this.appList.TabIndex = 2;
+            this.appList.SelectedIndexChanged += new System.EventHandler(this.AppList_SelectedIndexChanged);
             // 
             // buttonCreateFile
             // 
@@ -220,7 +221,7 @@
             this.Controls.Add(this.searchLabel);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonInstallApps);
-            this.Controls.Add(this.ButtonRunScript);
+            this.Controls.Add(this.ButtonLoadScript);
             this.Controls.Add(this.buttonUnselectAll);
             this.Controls.Add(this.buttonRefreshList);
             this.Controls.Add(this.appList);
@@ -243,7 +244,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private CSharpExtensions.Form.ColoredControls.ColoredButton buttonRefreshList;
         private CSharpExtensions.Form.ColoredControls.ColoredButton buttonUnselectAll;
-        private CSharpExtensions.Form.ColoredControls.ColoredButton ButtonRunScript;
+        private CSharpExtensions.Form.ColoredControls.ColoredButton ButtonLoadScript;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private CSharpExtensions.Form.ColoredControls.ColoredButton buttonInstallApps;
         private System.Windows.Forms.TextBox textBoxSearch;

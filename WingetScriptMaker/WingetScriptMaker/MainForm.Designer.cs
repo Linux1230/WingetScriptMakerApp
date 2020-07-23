@@ -30,8 +30,8 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Winget = new System.Windows.Forms.TabPage();
-            this.Other = new System.Windows.Forms.TabPage();
             this.wingetCMD = new WingetScriptMaker.WingetCMD();
+            this.Other = new System.Windows.Forms.TabPage();
             this.otherCMD = new WingetScriptMaker.OtherCMD.OtherCMD();
             this.tabControl.SuspendLayout();
             this.Winget.SuspendLayout();
@@ -63,17 +63,6 @@
             this.Winget.Text = "Winget";
             this.Winget.UseVisualStyleBackColor = true;
             // 
-            // Other
-            // 
-            this.Other.Controls.Add(this.otherCMD);
-            this.Other.Location = new System.Drawing.Point(4, 22);
-            this.Other.Name = "Other";
-            this.Other.Padding = new System.Windows.Forms.Padding(3);
-            this.Other.Size = new System.Drawing.Size(844, 607);
-            this.Other.TabIndex = 1;
-            this.Other.Text = "Other";
-            this.Other.UseVisualStyleBackColor = true;
-            // 
             // wingetCMD
             // 
             this.wingetCMD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
@@ -84,6 +73,17 @@
             this.wingetCMD.Name = "wingetCMD";
             this.wingetCMD.Size = new System.Drawing.Size(838, 601);
             this.wingetCMD.TabIndex = 0;
+            // 
+            // Other
+            // 
+            this.Other.Controls.Add(this.otherCMD);
+            this.Other.Location = new System.Drawing.Point(4, 22);
+            this.Other.Name = "Other";
+            this.Other.Padding = new System.Windows.Forms.Padding(3);
+            this.Other.Size = new System.Drawing.Size(844, 607);
+            this.Other.TabIndex = 1;
+            this.Other.Text = "Other";
+            this.Other.UseVisualStyleBackColor = true;
             // 
             // otherCMD
             // 

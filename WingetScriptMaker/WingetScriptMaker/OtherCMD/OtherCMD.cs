@@ -40,31 +40,38 @@ namespace WingetScriptMaker.OtherCMD
 
         private void OtherCMD_Load(object sender, EventArgs e)
         {
+                try
+                {
+                    List<string> files = DesignMode ? new List<string>() : IO.GetFileNamesFromFolder($@"Batch");
+                    foreach (var item in files)
+                    {
+                        ColoredButton cb = new ColoredButton
+                        {
+                            Width = 150,
+                            Height = 50,
+                            Name = item,
+                            Text = item
+                        };
+                        cb.Click += new EventHandler(RunSelectedScript);
+                        flowLayoutPanel1.Controls.Add(cb);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Messages.ShowError($"Error: {ex}");
+                }
+        }
+
+        private void RunSelectedScript(object sender, EventArgs e)
+        {
             try
             {
-                List<string> files = IO.GetFileNamesFromFolder($@"Batch");
-                foreach (var item in files)
-                {
-                    ColoredButton cb = new ColoredButton
-                    {
-                        Width = 150,
-                        Height = 50,
-                        Name = item,
-                        Text = item
-                    };
-                    cb.Click += new EventHandler(RunSelectedScript);
-                    flowLayoutPanel1.Controls.Add(cb);
-                }
+                RunProcess.BatchScript($@"{IO.GetExePath()}/Batch/{(sender as ColoredButton).Name}");
             }
             catch (Exception ex)
             {
                 Messages.ShowError($"Error: {ex}");
             }
-        }
-
-        private void RunSelectedScript(object sender, EventArgs e)
-        {
-            RunProcess.BatchScript($@"{IO.GetExePath()}/Batch/{(sender as ColoredButton).Name}");
         }
     }
 }
