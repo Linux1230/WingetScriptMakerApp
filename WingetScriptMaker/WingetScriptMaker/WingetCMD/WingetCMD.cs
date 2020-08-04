@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using CSharpExtensions.Form.CustomMessageBox;
 using CSharpExtensions.Form.ColoredControls;
 using CSharpExtensions.String;
-using CSharpExtensions.RunProcess;
 using CSharpExtensions.IO;
 
 namespace WingetScriptMaker
@@ -63,6 +62,11 @@ namespace WingetScriptMaker
             }
         }
 
+        private List<string> GetSelectedAppsFromList()
+        {
+            return appList.SelectedItems.OfType<string>().ToList();
+        }
+
         private void LoadingError()
         {
             Messages.ShowError("Unexpected error occurred, application restarting!");
@@ -77,7 +81,7 @@ namespace WingetScriptMaker
                 {
                     appList.SetSelected(appList.Items.IndexOf(item.Name), true);
                 }
-                else if(appList.Items.Contains(item.Id))
+                else if (appList.Items.Contains(item.Id))
                 {
                     appList.SetSelected(appList.Items.IndexOf(item.Id), true);
                 }
@@ -138,14 +142,14 @@ namespace WingetScriptMaker
                     {
                         if (saveFileDialog.FileName != "")
                         {
-                            WingetScript.Create(appList.SelectedItems.OfType<string>().ToList(), saveFileDialog.FileName);
+                            WingetScript.Create(GetSelectedAppsFromList(), saveFileDialog.FileName);
                             Messages.ShowInformation($"{saveFileDialog.FileName} successfully created!");
                         }
                         else
                             Messages.ShowError($"You must provide a filename!");
                     }
                 }
-                 else
+                else
                     Messages.ShowError($"Please choose at least one application from the list!");
             }
             catch (Exception ex)
@@ -188,7 +192,7 @@ namespace WingetScriptMaker
                 {
                     if (appList.SelectedItems != null)
                     {
-                        foreach (var item in appList.SelectedItems.OfType<string>().ToList())
+                        foreach (var item in GetSelectedAppsFromList())
                         {
                             AppEntity app = FindApp(item);
                             dialogResult = Messages.ShowDialogOkCancel($"Name: {app.Name}\nId: {app.Id}\nVersion: {app.Version}\nThis application will be installed to your computer.");
@@ -233,13 +237,15 @@ namespace WingetScriptMaker
 
         private void AppList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (appList.SelectedItems.OfType<string>().ToList() != null)
+            List<string> apps = GetSelectedAppsFromList();
+            if (apps != null)
             {
-                foreach (var item in appList.SelectedItems.OfType<string>().ToList())
+                //need some optimalization
+                SelectedApps.Clear();
+                foreach (var item in apps)
                 {
                     AppEntity temp = FindApp(item);
-                    if (!SelectedApps.Contains(temp))
-                        SelectedApps.Add(temp);
+                    SelectedApps.Add(temp);
                 }
             }
         }
