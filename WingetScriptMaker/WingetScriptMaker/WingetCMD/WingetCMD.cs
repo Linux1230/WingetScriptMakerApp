@@ -40,9 +40,22 @@ namespace WingetScriptMaker
         #region Variables
         private List<AppEntity> CurrantApps { get; set; }
         private List<AppEntity> SelectedApps { get; set; }
+
+        private List<AppEntity> AllSelectedApps { get; set; } //for Search
         #endregion
 
         #region Methods
+        private void Start()
+        {
+            CurrantApps = LoadAppNames();
+            FillAppList(CurrantApps, 0);
+            SelectedApps = new List<AppEntity>();
+            AllSelectedApps = new List<AppEntity>();
+            if (appList.Items.Contains(""))
+                LoadingError();
+            filterComboBox.SelectedIndex = 0;
+        }
+
         private List<AppEntity> LoadAppNames()
         {
             return Winget.Search();
@@ -105,12 +118,7 @@ namespace WingetScriptMaker
         #region Events
         private void Form_Load(object sender, EventArgs e)
         {
-            CurrantApps = LoadAppNames();
-            FillAppList(CurrantApps, 0);
-            SelectedApps = new List<AppEntity>();
-            if (appList.Items.Contains(""))
-                LoadingError();
-            filterComboBox.SelectedIndex = 0;
+            Start();
         }
 
         private void ButtonRefreshList_Click(object sender, EventArgs e)
@@ -169,6 +177,8 @@ namespace WingetScriptMaker
                     {
                         if (openFileDialog.FileName != "")
                         {
+                            SelectedApps.Clear();
+                            appList.SelectedItems.Clear();
                             AutoSelectApps(LoadAppsFromFile(IO.ReadFile(openFileDialog.FileName)));
                             Messages.ShowInformation($"{openFileDialog.FileName} successfully opened!");
                         }
@@ -220,6 +230,25 @@ namespace WingetScriptMaker
                 CurrantApps.Where(x => x.Id.ContainsCaseInsensitive(textBoxSearch.Text)).ToList(),
                 filterComboBox.SelectedIndex
                 );
+            if (AllSelectedApps.Count != SelectedApps.Count)
+            {
+                if (AllSelectedApps.Count == 0 || AllSelectedApps.Count < SelectedApps.Count)
+                {
+                    AllSelectedApps.Clear();
+                    AllSelectedApps.AddRange(SelectedApps);
+                }
+                else if (AllSelectedApps.Count > SelectedApps.Count)
+                {
+                    SelectedApps.Clear();
+                    SelectedApps.AddRange(AllSelectedApps);
+                }
+            }
+            if (SelectedApps.Count != 0)
+            {
+                List<AppEntity> temp = new List<AppEntity>();
+                temp.AddRange(SelectedApps);
+                AutoSelectApps(temp);
+            }
         }
 
         private void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -240,7 +269,6 @@ namespace WingetScriptMaker
             List<string> apps = GetSelectedAppsFromList();
             if (apps != null)
             {
-                //need some optimalization
                 SelectedApps.Clear();
                 foreach (var item in apps)
                 {
