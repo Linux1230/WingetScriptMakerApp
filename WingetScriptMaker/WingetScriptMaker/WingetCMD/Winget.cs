@@ -38,7 +38,7 @@ namespace WingetScriptMaker
             int maxAppNameLenght = 0;
             for (int i = maxAppNameLenght; i < commandOutput[1].Length - 1; i++)
             {
-                if (commandOutput[1][i] == 'I' && commandOutput[1][i + 1] == 'd')
+                if (commandOutput[1][i] == 'A' && commandOutput[1][i + 1] == 'z')
                     break;
                 else
                     maxAppNameLenght++;
